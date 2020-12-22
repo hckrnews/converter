@@ -115,7 +115,7 @@ class Converter {
         const output = execSync(this.execPath);
 
         return {
-            file: this.pdfFile,
+            file: this.oldFile,
             fileName,
             output
         };
