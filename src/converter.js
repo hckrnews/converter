@@ -1,15 +1,13 @@
 import File from './file.js';
 import {
     folderExists,
+    fileExists,
     getFileName
 } from './fs.js';
 import {
     execSync
 } from 'child_process';
 import path from 'path';
-import {
-    platform
-} from 'process';
 
 /**
  * Converter
@@ -148,3 +146,11 @@ class Converter {
 }
 
 export default Converter;
+export {
+    Converter,
+    File,
+    folderExists,
+    fileExists,
+    getFileName
+}
+;
