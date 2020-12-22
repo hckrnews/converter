@@ -1,9 +1,11 @@
 {
     "name": "@hckrnews/converter",
-    "version": "0.2.1",
+    "version": "0.2.2",
     "description": "Convert files",
     "files": [
         "src/converter.js",
+        "src/file.js",
+        "src/fs.js",
         "dist/converter.js",
         "dist/converter.js.map",
         "dist/converter.module.js",
