@@ -7,7 +7,6 @@ import {
 import {
     execSync
 } from 'child_process';
-import path from 'path';
 
 /**
  * Converter
@@ -90,9 +89,7 @@ class Converter {
      * @return {string}
      */
     get newFile() {
-        const fileInfo = path.parse(this.oldFile.path);
-
-        return this.output + fileInfo.name + fileInfo.ext;
+        return this.output + this.oldFile.name + this.oldFile.extension;
     }
 
     /**
