@@ -1,7 +1,7 @@
 import {
     fileExists
 } from './fs.js';
-
+import path from 'path';
 
 /**
  * File model
@@ -29,6 +29,51 @@ class File {
         }
 
         this.path = path;
+    }
+
+    /**
+     * Get the file info.
+     *
+     * @return {object}
+     */
+    get info() {
+        return path.parse(this.path);
+    }
+
+    /**
+     * Get the file directory.
+     *
+     * @return {string}
+     */
+    get directory() {
+        return this.info.dir;
+    }
+
+    /**
+     * Get the file extension.
+     *
+     * @return {string}
+     */
+    get extension() {
+        return this.info.ext;
+    }
+
+    /**
+     * Get the file name.
+     *
+     * @return {string}
+     */
+    get base() {
+        return this.info.base;
+    }
+
+    /**
+     * Get the file name.
+     *
+     * @return {string}
+     */
+    get name() {
+        return this.info.name;
     }
 
     /**

@@ -7,6 +7,10 @@ describe('Converter file model test', () => {
         });
 
         expect(file.path).toBe('test/OPW 733 Tienduizend redenen.pdf');
+        expect(file.directory).toBe('test');
+        expect(file.base).toBe('OPW 733 Tienduizend redenen.pdf');
+        expect(file.extension).toBe('.pdf');
+        expect(file.name).toBe('OPW 733 Tienduizend redenen');
     });
 
     it('It should throw an error if the pathpath doesnt exists', () => {
