@@ -1,7 +1,9 @@
 import {
     exists,
     folderExists,
-    fileExists
+    fileExists,
+    copyFile,
+    deleteFile
 } from '../fs.js';
 
 const expectTestCases = [
@@ -40,3 +42,38 @@ describe.each(expectTestCases)(
         });
     }
 );
+describe('FS helper test', () => {
+    it('It should copy the file', () => {
+        const fromFile = 'test/OPW 733 Tienduizend redenen.pdf';
+        const toFile = 'output/test.pdf';
+
+        expect(fileExists(fromFile)).toBe(true);
+        expect(fileExists(toFile)).toBe(false);
+        copyFile(fromFile, toFile);
+        expect(fileExists(fromFile)).toBe(true);
+        expect(fileExists(toFile)).toBe(true);
+    });
+
+    it('It should return false if the file doesnt exists', () => {
+        const fromFile = 'test/test.pdf';
+        const toFile = 'output/test.pdf';
+
+        expect(fileExists(fromFile)).toBe(false);
+        expect(copyFile(fromFile, toFile)).toBe(false);
+    });
+
+    it('It should remove the file', () => {
+        const exampleFile = 'output/test.pdf';
+
+        expect(fileExists(exampleFile)).toBe(true);
+        deleteFile(exampleFile);
+        expect(fileExists(exampleFile)).toBe(false);
+    });
+
+    it('It should return false if the file doesnt exists', () => {
+        const exampleFile = 'output/test.pdf';
+
+        expect(fileExists(exampleFile)).toBe(false);
+        expect(deleteFile(exampleFile)).toBe(false);
+    });
+});
