@@ -1,3 +1,6 @@
+import {
+    expect, describe, it
+} from '@jest/globals';
 import Converter from '../converter.js';
 import {
     fileExists
