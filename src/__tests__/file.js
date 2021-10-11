@@ -1,3 +1,6 @@
+import {
+    expect, describe, it
+} from '@jest/globals';
 import File from '../file.js';
 
 describe('Converter file model test', () => {
