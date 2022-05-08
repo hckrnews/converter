@@ -5,6 +5,7 @@ import {
     getFileName
 } from './fs.js';
 import {
+    exec,
     execSync
 } from 'child_process';
 
@@ -19,6 +20,7 @@ class Converter {
         this.oldFile = null;
         this.output = null;
         this.customConverter = null;
+        this.sync = true;
     }
 
     /**
@@ -32,6 +34,19 @@ class Converter {
         }
 
         return 'cp';
+    }
+
+    /**
+     * Set the sync
+     *
+     * @param {boolean} sync
+     */
+    setSync(sync) {
+        if (sync.constructor !== Boolean) {
+            throw new Error('Sync should be a boolean');
+        }
+
+        this.sync = sync;
     }
 
     /**
@@ -102,6 +117,15 @@ class Converter {
     }
 
     /**
+     * Get the convert method
+     *
+     * @return {function}
+     */
+    get convertMethod() {
+        return this.sync ? execSync : exec;
+    }
+
+    /**
      * Convert pdf files to png files.
      *
      * @return {array}
@@ -109,7 +133,7 @@ class Converter {
     convert() {
         const fileName = getFileName(this.oldFile.path);
 
-        const output = execSync(this.execPath);
+        const output = this.convertMethod(this.execPath);
 
         return {
             file: this.oldFile,
@@ -130,10 +154,12 @@ class Converter {
     static create({
         file,
         output,
-        customConverter
+        customConverter,
+        sync = true
     }) {
         const converter = new Converter();
 
+        converter.setSync(sync);
         converter.setFile(file);
         converter.setOutput(output);
         converter.setConverter(customConverter);
