@@ -14,6 +14,20 @@ describe('Converter test', () => {
         });
 
         expect(converter.oldFile.path).toBe('test/OPW 733 Tienduizend redenen.pdf');
+        expect(converter.sync).toBe(true);
+        expect(converter.convertMethod.name).toBe('execSync');
+    });
+
+    it('It should generate the converter', () => {
+        const converter = Converter.create({
+            file:   'test/OPW 733 Tienduizend redenen.pdf',
+            output: 'output/',
+            sync:   false
+        });
+
+        expect(converter.oldFile.path).toBe('test/OPW 733 Tienduizend redenen.pdf');
+        expect(converter.sync).toBe(false);
+        expect(converter.convertMethod.name).toBe('exec');
     });
 
     it('It should generate the converter', () => {
@@ -105,5 +119,15 @@ describe('Converter test', () => {
                 customConverter: 42
             });
         }).toThrowError('Converter should be a string');
+    });
+
+    it('It should throw an error if the sync isnt a boolean', () => {
+        expect(() => {
+            Converter.create({
+                file:   'test/OPW 733 Tienduizend redenen.pdf',
+                output: 'output/',
+                sync:   42
+            });
+        }).toThrowError('Sync should be a boolean');
     });
 });
