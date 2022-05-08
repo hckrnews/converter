@@ -18,7 +18,8 @@ import Converter from '../src/converter.js';
 
 const converter = Converter.create({
     file:  'test/xyz.pdf',
-    output: 'output/'
+    output: 'output/',
+    sync: true
 });
 
 const result = converter.convert();
