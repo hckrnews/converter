@@ -1,13 +1,6 @@
+import { exec, execSync } from 'child_process';
 import File from './file.js';
-import {
-    folderExists,
-    fileExists,
-    getFileName
-} from './fs.js';
-import {
-    exec,
-    execSync
-} from 'child_process';
+import { folderExists, fileExists, getFileName } from './fs.js';
 
 /**
  * Converter
@@ -77,7 +70,7 @@ class Converter {
         }
 
         this.oldFile = File.create({
-            filePath: file
+            filePath: file,
         });
     }
 
@@ -113,7 +106,7 @@ class Converter {
      * @return {string}
      */
     get execPath() {
-        return this.converter + ' "' + this.oldFile.path + '" "' + this.newFile + '"';
+        return `${this.converter} "${this.oldFile.path}" "${this.newFile}"`;
     }
 
     /**
@@ -138,7 +131,7 @@ class Converter {
         return {
             file: this.oldFile,
             fileName,
-            output
+            output,
         };
     }
 
@@ -151,12 +144,7 @@ class Converter {
      *
      * @return {object}
      */
-    static create({
-        file,
-        output,
-        customConverter,
-        sync = true
-    }) {
+    static create({ file, output, customConverter, sync = true }) {
         const converter = new Converter();
 
         converter.setSync(sync);
@@ -169,11 +157,4 @@ class Converter {
 }
 
 export default Converter;
-export {
-    Converter,
-    File,
-    folderExists,
-    fileExists,
-    getFileName
-}
-;
+export { Converter, File, folderExists, fileExists, getFileName };
