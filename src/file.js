@@ -1,7 +1,5 @@
-import {
-    fileExists
-} from './fs.js';
 import path from 'path';
+import { fileExists } from './fs.js';
 
 /**
  * File model
@@ -17,18 +15,18 @@ class File {
     /**
      * Set the path
      *
-     * @param {string} path
+     * @param {string} filePath
      */
-    setPath(path) {
-        if (!path || path.constructor !== String) {
+    setPath(filePath) {
+        if (!filePath || filePath.constructor !== String) {
             throw new Error('File path should be a string');
         }
 
-        if (!fileExists(path)) {
+        if (!fileExists(filePath)) {
             throw new Error('File path doesnt exists');
         }
 
-        this.path = path;
+        this.path = filePath;
     }
 
     /**
@@ -83,9 +81,7 @@ class File {
      *
      * @return {object}
      */
-    static create({
-        filePath
-    }) {
+    static create({ filePath }) {
         const file = new File();
 
         file.setPath(filePath);
