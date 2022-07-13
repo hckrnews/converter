@@ -18,7 +18,7 @@ class File {
      * @param {string} filePath
      */
     setPath(filePath) {
-        if (!filePath || path.constructor !== String) {
+        if (!filePath || filePath.constructor !== String) {
             throw new Error('File path should be a string');
         }
 
