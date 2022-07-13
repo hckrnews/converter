@@ -5,29 +5,10 @@
     "files": [
         "src/converter.js",
         "src/file.js",
-        "src/fs.js",
-        "dist/converter.js",
-        "dist/converter.js.map",
-        "dist/converter.module.mjs",
-        "dist/converter.module.mjs.map",
-        "dist/converter.modern.mjs",
-        "dist/converter.modern.mjs.map",
-        "dist/converter.umd.cjs",
-        "dist/converter.umd.cjs.map"
+        "src/fs.js"
     ],
     "source": "src/converter.js",
-    "main": "dist/converter.js",
-    "module": "dist/converter.module.mjs",
-    "esmodule": "dist/converter.modern.mjs",
-    "unpkg": "dist/converter.umd.cjs",
-    "umd:main": "dist/converter.umd.cjs",
-    "exports": {
-        ".": {
-            "require": "./dist/converter.umd.cjs",
-            "import": "./dist/converter.module.mjs",
-            "default": "./dist/converter.js"
-        }
-    },
+    "main": "src/converter.js",
     "repository": {
         "type": "git",
         "url": "https://github.com/hckrnews/converter.git"
@@ -47,8 +28,6 @@
     "license": "MIT",
     "homepage": "https://github.com/hckrnews/converter#readme",
     "scripts": {
-        "build": "microbundle --target node",
-        "dev": "microbundle --target node watch",
         "lint": "eslint src/*.js --config .eslintrc",
         "lint:report": "eslint src/*.js --config .eslintrc -f json -o report.json",
         "lint:fix": "eslint src/*.js --config .eslintrc --fix",
@@ -68,7 +47,6 @@
         "eslint-plugin-prettier": "^4.0.0",
         "esm": "^3.2.25",
         "jscpd": "^3.3.26",
-        "microbundle": "^0.14.0",
         "prettier": "^2.2.1"
     },
     "dependencies": {
