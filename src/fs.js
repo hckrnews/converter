@@ -1,4 +1,4 @@
-import fs from 'fs';
+import fs from 'node:fs';
 
 const exists = (path) => fs.existsSync(path);
 

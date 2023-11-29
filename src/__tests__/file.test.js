@@ -1,5 +1,5 @@
 import test from 'node:test';
-import assert from 'assert';
+import assert from 'node:assert';
 import File from '../file.js';
 
 test('Converter file model test', async (t) => {
