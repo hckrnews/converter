@@ -1,4 +1,4 @@
-import { exec, execSync } from 'child_process';
+import { exec, execSync } from 'node:child_process';
 import File from './file.js';
 import { folderExists, fileExists, getFileName } from './fs.js';
 
