@@ -14,7 +14,6 @@ class File {
 
     /**
      * Set the path
-     *
      * @param {string} filePath
      */
     setPath(filePath) {
@@ -31,8 +30,7 @@ class File {
 
     /**
      * Get the file info.
-     *
-     * @return {object}
+     * @returns {object}
      */
     get info() {
         return path.parse(this.path);
@@ -40,8 +38,7 @@ class File {
 
     /**
      * Get the file directory.
-     *
-     * @return {string}
+     * @returns {string}
      */
     get directory() {
         return this.info.dir;
@@ -49,8 +46,7 @@ class File {
 
     /**
      * Get the file extension.
-     *
-     * @return {string}
+     * @returns {string}
      */
     get extension() {
         return this.info.ext;
@@ -58,8 +54,7 @@ class File {
 
     /**
      * Get the file name.
-     *
-     * @return {string}
+     * @returns {string}
      */
     get base() {
         return this.info.base;
@@ -67,8 +62,7 @@ class File {
 
     /**
      * Get the file name.
-     *
-     * @return {string}
+     * @returns {string}
      */
     get name() {
         return this.info.name;
@@ -76,10 +70,9 @@ class File {
 
     /**
      * Create a file model
-     *
-     * @param {string} filePath
-     *
-     * @return {object}
+     * @param {object} params
+     * @param {string} params.filePath
+     * @returns {object}
      */
     static create({ filePath }) {
         const file = new File();
