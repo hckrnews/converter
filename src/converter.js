@@ -3,6 +3,13 @@ import File from './file.js';
 import { folderExists, fileExists, getFileName } from './fs.js';
 
 /**
+ * @typedef {object} ConvertResult
+ * @property {File} file
+ * @property {string} fileName
+ * @property {Buffer|string} output
+ */
+
+/**
  * Converter
  */
 class Converter {
@@ -18,8 +25,7 @@ class Converter {
 
     /**
      * Get the converter.
-     *
-     * @return {string}
+     * @returns {string}
      */
     get converter() {
         if (this.customConverter) {
@@ -31,7 +37,6 @@ class Converter {
 
     /**
      * Set the sync
-     *
      * @param {boolean} sync
      */
     setSync(sync) {
@@ -44,7 +49,6 @@ class Converter {
 
     /**
      * Set the custom converter.
-     *
      * @param {string} converter
      */
     setConverter(converter) {
@@ -61,7 +65,6 @@ class Converter {
 
     /**
      * Set the files
-     *
      * @param {string} file
      */
     setFile(file) {
@@ -76,7 +79,6 @@ class Converter {
 
     /**
      * Set the output path
-     *
      * @param {string} output
      */
     setOutput(output) {
@@ -93,8 +95,7 @@ class Converter {
 
     /**
      * Get the path of the new file.
-     *
-     * @return {string}
+     * @returns {string}
      */
     get newFile() {
         return this.output + this.oldFile.name + this.oldFile.extension;
@@ -102,8 +103,7 @@ class Converter {
 
     /**
      * Get the exec path
-     *
-     * @return {string}
+     * @returns {string}
      */
     get execPath() {
         return `${this.converter} "${this.oldFile.path}" "${this.newFile}"`;
@@ -111,8 +111,7 @@ class Converter {
 
     /**
      * Get the convert method
-     *
-     * @return {function}
+     * @returns {Function}
      */
     get convertMethod() {
         return this.sync ? execSync : exec;
@@ -120,8 +119,7 @@ class Converter {
 
     /**
      * Convert pdf files to png files.
-     *
-     * @return {array}
+     * @returns {ConvertResult}
      */
     convert() {
         const fileName = getFileName(this.oldFile.path);
@@ -137,12 +135,12 @@ class Converter {
 
     /**
      * Create the converter
-     *
-     * @param {string} file
-     * @param {string} output
-     * @param {string} customConverter
-     *
-     * @return {object}
+     * @param {object} params
+     * @param {string} params.file
+     * @param {string} params.output
+     * @param {string=} params.customConverter
+     * @param {boolean=} params.sync
+     * @returns {Converter}
      */
     static create({ file, output, customConverter, sync = true }) {
         const converter = new Converter();
