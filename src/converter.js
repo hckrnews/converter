@@ -87,7 +87,7 @@ class Converter {
     }
 
     if (!folderExists(output)) {
-      throw new Error('Output folder doesnt exists')
+      throw new Error('Output folder doesn\'t exist')
     }
 
     this.output = output

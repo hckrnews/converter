@@ -11,14 +11,14 @@ import {
 
 const expectTestCases = [
   {
-    description: 'It should return true for the exists and fileExists',
+    description: 'It should return true for the exist and fileExists',
     input: path.join('test', 'OPW 733 Tienduizend redenen.pdf'),
     expectedExists: true,
     expectedFolderExists: false,
     expectedFileExists: true
   },
   {
-    description: 'It should return true for the exists and folderExists',
+    description: 'It should return true for the exist and folderExists',
     input: path.join('output'),
     expectedExists: true,
     expectedFolderExists: true,
@@ -68,7 +68,7 @@ test('FS helper test', async (t) => {
     assert.strictEqual(fileExists(toFile), true)
   })
 
-  await t.test('It should return false if the file doesnt exists', () => {
+  await t.test('It should return false if the file doesn\'t exist', () => {
     const fromFile = path.join('test', 'test.pdf')
     const toFile = path.join('output', 'test.pdf')
 
@@ -84,7 +84,7 @@ test('FS helper test', async (t) => {
     assert.strictEqual(fileExists(exampleFile), false)
   })
 
-  await t.test('It should return false if the file doesnt exists', () => {
+  await t.test('It should return false if the file doesn\'t exist', () => {
     const exampleFile = path.join('output', 'test.pdf')
 
     assert.strictEqual(fileExists(exampleFile), false)

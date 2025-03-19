@@ -18,13 +18,13 @@ test('Converter file model test', async (t) => {
     assert.strictEqual(file.name, path.basename(testFilePath, path.extname(testFilePath)))
   })
 
-  await t.test('It should throw an error if the file path doesnt exist', () => {
+  await t.test('It should throw an error if the file path doesn\'t exist', () => {
     try {
       File.create({
         filePath: '42'
       })
     } catch (error) {
-      assert.strictEqual(error.message, 'File path doesnt exist')
+      assert.strictEqual(error.message, 'File path doesn\'t exist')
     }
   })
 
@@ -44,7 +44,7 @@ test('Converter file model test', async (t) => {
         filePath: path.join('output', '')
       })
     } catch (error) {
-      assert.strictEqual(error.message, 'File path doesnt exist')
+      assert.strictEqual(error.message, 'File path doesn\'t exist')
     }
   })
 })

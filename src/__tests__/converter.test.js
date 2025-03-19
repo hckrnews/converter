@@ -101,25 +101,25 @@ test('Converter test', async (t) => {
     }
   })
 
-  await t.test('It should throw an error if the output folder doesnt exists', () => {
+  await t.test('It should throw an error if the output folder doesn\'t exist', () => {
     try {
       Converter.create({
         file: testFilePath,
         output: 'unknownfolder/'
       })
     } catch (error) {
-      assert.strictEqual(error.message, 'Output folder doesnt exists')
+      assert.strictEqual(error.message, 'Output folder doesn\'t exist')
     }
   })
 
-  await t.test('It should throw an error if the output folder doesnt exists', () => {
+  await t.test('It should throw an error if the output folder doesn\'t exist', () => {
     try {
       Converter.create({
         file: testFilePath,
         output: path.join('test', 'OPW 733 Tienduizend redenen.ppt')
       })
     } catch (error) {
-      assert.strictEqual(error.message, 'Output folder doesnt exists')
+      assert.strictEqual(error.message, 'Output folder doesn\'t exist')
     }
   })
 
