@@ -22,7 +22,7 @@ class File {
     }
 
     if (!fileExists(filePath)) {
-      throw new Error('File path doesnt exists')
+      throw new Error('File path doesnt exist')
     }
 
     this.path = filePath
