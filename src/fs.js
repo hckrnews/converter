@@ -1,38 +1,40 @@
-import fs from 'node:fs';
+import fs from 'node:fs'
+import path from 'node:path'
 
-const exists = (path) => fs.existsSync(path);
+const exists = (filePath) => fs.existsSync(filePath)
 
-const folderExists = (path) => {
-    if (!exists(path)) {
-        return false;
-    }
+const folderExists = (filePath) => {
+  if (!exists(filePath)) {
+    return false
+  }
 
-    return fs.statSync(path).isDirectory();
-};
+  return fs.statSync(filePath).isDirectory()
+}
 
-const fileExists = (path) => {
-    if (!exists(path)) {
-        return false;
-    }
+const fileExists = (filePath) => {
+  if (!exists(filePath)) {
+    return false
+  }
 
-    return fs.statSync(path).isFile();
-};
+  return fs.statSync(filePath).isFile()
+}
 
-const getFileName = (path) => path.split('/').pop();
+const getFileName = (filePath) => path.basename(filePath)
 
 const copyFile = (from, to) => {
-    if (!fileExists(from)) {
-        return false;
-    }
+  if (!fileExists(from)) {
+    return false
+  }
 
-    return fs.copyFileSync(from, to);
-};
-const deleteFile = (path) => {
-    if (!fileExists(path)) {
-        return false;
-    }
+  return fs.copyFileSync(from, to)
+}
 
-    return fs.unlinkSync(path);
-};
+const deleteFile = (filePath) => {
+  if (!fileExists(filePath)) {
+    return false
+  }
 
-export { exists, folderExists, fileExists, getFileName, deleteFile, copyFile };
+  return fs.unlinkSync(filePath)
+}
+
+export { exists, folderExists, fileExists, getFileName, deleteFile, copyFile }
