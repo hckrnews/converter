@@ -1,5 +1,5 @@
 /* eslint-disable sonarjs/no-duplicate-string */
-// eslint-disable-next-line n/no-unsupported-features/node-builtins
+
 import test from 'node:test'
 import assert from 'node:assert'
 import path from 'node:path'
