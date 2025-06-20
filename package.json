@@ -1,6 +1,6 @@
 {
     "name": "@hckrnews/converter",
-    "version": "0.5.5",
+    "version": "0.6.0",
     "description": "Convert files",
     "files": [
         "src/converter.js",
