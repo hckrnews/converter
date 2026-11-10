@@ -1,4 +1,5 @@
-import { exec, execSync } from 'node:child_process'
+import { execFile, execFileSync } from 'node:child_process'
+import path from 'node:path'
 import File from './file.js'
 import { fileExists, folderExists, getFileName } from './fs.js'
 
@@ -102,11 +103,12 @@ class Converter {
   }
 
   /**
-   * Get the exec path
-   * @returns {string}
+   * Get the arguments passed to the converter binary.
+   * Paths are absolute so they can never be parsed as an option (e.g. "-rf").
+   * @returns {string[]}
    */
-  get execPath () {
-    return `${this.converter} "${this.oldFile.path}" "${this.newFile}"`
+  get args () {
+    return [path.resolve(this.oldFile.path), path.resolve(this.newFile)]
   }
 
   /**
@@ -114,7 +116,7 @@ class Converter {
    * @returns {Function}
    */
   get convertMethod () {
-    return this.sync ? execSync : exec
+    return this.sync ? execFileSync : execFile
   }
 
   /**
@@ -124,7 +126,7 @@ class Converter {
   convert () {
     const fileName = getFileName(this.oldFile.path)
 
-    const output = this.convertMethod(this.execPath)
+    const output = this.convertMethod(this.converter, this.args)
 
     return {
       file: this.oldFile,
