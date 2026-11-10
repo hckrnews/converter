@@ -31,7 +31,7 @@ file: path to the file.
 
 output: Output folder.
 
-customConverter: set a custom converter
+customConverter: name of the binary to run instead of `cp` (e.g. `convert`). It is executed without a shell and receives the input and output paths as arguments, so it must not contain flags or shell syntax.
 
 
 ## Test the package.
