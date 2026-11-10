@@ -2,7 +2,7 @@
 
 import test from 'node:test'
 import assert from 'node:assert'
-import { mkdtempSync, mkdirSync, writeFileSync, rmSync } from 'node:fs'
+import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import path from 'node:path'
 import { Converter } from '../converter.js'
@@ -26,10 +26,10 @@ test('Converter command injection', async (t) => {
     '";touch PWNED #.pdf'
   ]
 
-  for (const name of filenamePayloads) {
-    await t.test(`It should not execute a filename payload: ${name}`, () => {
+  await Promise.all(filenamePayloads.map((name) =>
+    t.test(`It should not execute a filename payload: ${name}`, () => {
       const file = createFile(name)
-      const output = path.join(dir, 'out') + '/'
+      const output = `${path.join(dir, 'out')}/`
       mkdirSync(output, { recursive: true })
 
       const result = Converter.create({ file, output, customConverter: 'cp' })
@@ -44,11 +44,11 @@ test('Converter command injection', async (t) => {
       assert.strictEqual(fileExists(marker), false)
       assert.strictEqual(fileExists(path.join(output, name)), true)
     })
-  }
+  ))
 
   await t.test('It should not execute an output directory payload', () => {
     const file = createFile('safe.pdf')
-    const output = path.join(dir, '$(touch PWNED)') + '/'
+    const output = `${path.join(dir, '$(touch PWNED)')}/`
     mkdirSync(output, { recursive: true })
 
     const cwd = process.cwd()
@@ -67,7 +67,7 @@ test('Converter command injection', async (t) => {
     const file = createFile('safe.pdf')
     const converter = Converter.create({
       file,
-      output: dir + '/',
+      output: `${dir}/`,
       customConverter: `echo && touch ${marker}`
     })
 
@@ -77,7 +77,7 @@ test('Converter command injection', async (t) => {
 
   await t.test('It should pass paths as absolute arguments', () => {
     const file = createFile('-rf.pdf')
-    const converter = Converter.create({ file, output: dir + '/' })
+    const converter = Converter.create({ file, output: `${dir}/` })
 
     assert.deepStrictEqual(converter.args, [
       path.resolve(file),
